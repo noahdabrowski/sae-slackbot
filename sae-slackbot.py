@@ -8,7 +8,8 @@ BOT_ID = os.environ.get("BOT_ID")
 
 # constants
 AT_BOT = "<@" + BOT_ID + ">"
-EXAMPLE_COMMAND = "do"
+PARROT_COMMAND = "say"
+HELP_COMMAND = "help"
 
 # instantiate Slack & Twilio clients
 slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
@@ -20,12 +21,20 @@ def handle_command(command, channel):
         are valid commands. If so, then acts on the commands. If not,
         returns back what it needs for clarification.
     """
-    response = "Not sure what you mean. Use the *" + EXAMPLE_COMMAND + \
-               "* command with numbers, delimited by spaces."
-    if command.startswith(EXAMPLE_COMMAND):
-        response = "Sure...write some more code then I can do that!"
+    response = "Wtf r u saying?. Use the *" + HELP_COMMAND + \
+               "* command to figure out what the fuck you're tryna say."
+
+    if command.startswith(HELP_COMMAND):
+        response = "Heres a list of commands: say, help"
+    if command.startswith(PARROT_COMMAND):
+	response = "Haven't written this command yet lul."
+
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
+
+
+# dont mess with shit below this line lul
+
 
 
 def parse_slack_output(slack_rtm_output):
