@@ -1,9 +1,9 @@
-source starterbot/bin/activate
+source sae-slackbot/sae-slackbot-env/bin/activate
 
 export SLACK_BOT_TOKEN='token'
 
-python print_bot_id.py
+python sae-slackbot/print_bot_id.py
 
 export BOT_ID='bot id'
 
-python sae-slackbot.py
+python sae-slackbot/sae-slackbot.py
